@@ -16,6 +16,7 @@ namespace EFECore.models
         [Column(TypeName ="varchar(255)")]
         public String slug { get; set; }
         public String Content { get; set; }
+        public DateTime datetime { get; set; }
 
 
     }

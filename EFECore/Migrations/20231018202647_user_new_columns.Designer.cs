@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFECore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231017225907_change_columns_in_post")]
-    partial class change_columns_in_post
+    [Migration("20231018202647_user_new_columns")]
+    partial class user_new_columns
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,6 +157,12 @@ namespace EFECore.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("dataType")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)")
+                        .HasComment("admin , Manager, agent");
 
                     b.HasKey("Id");
 

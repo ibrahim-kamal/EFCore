@@ -34,13 +34,25 @@ namespace EFECore
             modelBuilder.Entity<Post>(p =>
             {
                 p.Property(p => p.Content).HasColumnType("text");
-                p.Property(p => p.Id).HasColumnType("BigInt");
+                p.Property(p => p.datetime).HasDefaultValueSql("GETDATE()");
+                //p.Property(p => p.Id).HasColumnType("BigInt");
             });
-        }
 
+
+            modelBuilder.Entity<EmployeesPost>().HasKey(ep => ep.employeesPost).HasName("pk_emp_post_id");
+
+            modelBuilder.Entity<Employee>().Property(emp => emp.Role).HasDefaultValue("agent");
+            modelBuilder.Entity<Employee>().Property(emp => emp.Name).HasComputedColumnSql("[firstname] + ' ' + [lastname] ");
+            modelBuilder.Entity<subCategory>().Property(b => b.id).ValueGeneratedOnAdd();
+        }
+        
         public DbSet<Employee> Employees { get; set; }
         public DbSet<User> Users{ get; set; }
+        public DbSet<Post> posts{ get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<category> category { get; set; }
+        public DbSet<EmployeesPost> employeesPosts { get; set; }
+        public DbSet<brands> brands{ get; set; }
+        public DbSet<subCategory> subCategory { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,6 +14,9 @@ namespace EFECore.models
 
         public String Name { get; set; }
         [Required]
-        public String Password { get; set; }    
+        public String Password { get; set; }
+        [MaxLength(25)]
+        [Comment("admin , Manager, agent")]
+        public String dataType { get; set; }    
     }
 }
